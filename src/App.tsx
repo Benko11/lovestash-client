@@ -115,6 +115,9 @@ function App() {
                     <Link to="/add-category">
                         <BreathingSpace>Add category</BreathingSpace>
                     </Link>
+                    <Link to="/gallery">
+                        <BreathingSpace>Gallery</BreathingSpace>
+                    </Link>
                 </Navigation>
             </Header>
 

@@ -3,13 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Preloader } from './components/Preloader';
-import { Button } from './styledComponents/Button';
-import { Category } from './styledComponents/Category';
-import { CircularButton } from './styledComponents/CircularButton';
-import { DayMarker } from './styledComponents/DayMarker';
-import { Error } from './styledComponents/Error';
-import { NightMarker } from './styledComponents/NightMarker';
+import { Preloader } from '../components/Preloader';
+import { Button } from '../styledComponents/Button';
+import { Category } from '../styledComponents/Category';
+import { CircularButton } from '../styledComponents/CircularButton';
+import { DayMarker } from '../styledComponents/DayMarker';
+import { Error } from '../styledComponents/Error';
+import { NightMarker } from '../styledComponents/NightMarker';
 
 const Poem = styled.div`
     margin-bottom: 30px;
@@ -25,7 +25,7 @@ const StyledPoemVerses = styled(PoemVerses)`
     font-family: 'SF Mono', monospace;
     cursor: pointer;
 
-    &.sent {
+    .sent {
         text-decoration: line-through;
     }
 `;
@@ -172,14 +172,15 @@ export default function Home() {
 
             {displayedPoems.map((poem: any) => (
                 <Poem key={poems.indexOf(poem as never)}>
-                    <StyledPoemVerses
-                        onClick={() => {
-                            console.log('click');
-                            navigator.clipboard.writeText(poem.verses);
-                        }}
-                        className={poem.completed ? 'sent' : ''}
-                    >
-                        {poem.verses}
+                    <StyledPoemVerses>
+                        <div
+                            onClick={() => {
+                                navigator.clipboard.writeText(poem.verses);
+                            }}
+                            className={poem.completed ? 'sent' : ''}
+                        >
+                            {poem.verses}
+                        </div>
                     </StyledPoemVerses>
 
                     <Category>

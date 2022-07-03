@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Button } from './styledComponents/Button';
+import { Button } from '../styledComponents/Button';
 
 const Form = styled.form`
     display: flex;

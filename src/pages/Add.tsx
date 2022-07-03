@@ -2,10 +2,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { Preloader } from './components/Preloader';
-import useLocalStorage from './hooks/useLocalStorage';
-import { Button } from './styledComponents/Button';
-import { Error } from './styledComponents/Error';
+import { Preloader } from '../components/Preloader';
+import useLocalStorage from '../hooks/useLocalStorage';
+import { Button } from '../styledComponents/Button';
+import { Error } from '../styledComponents/Error';
 
 const RadioBoxes = styled.div`
     display: flex;
@@ -17,6 +17,8 @@ const Textarea = styled.textarea`
     width: 100%;
     height: 400px;
     resize: none;
+    padding: 1rem 1.2rem;
+    line-height: 180%;
 `;
 
 function Add() {
@@ -37,7 +39,10 @@ function Add() {
                 { verses, category },
                 { headers: { 'Content-`Type': 'application/json' } }
             )
-            .then((res) => navigate('/'))
+            .then((res) => {
+                localStorage.setItem('verses', '');
+                navigate('/');
+            })
             .catch((err) => console.error(err));
     };
 
@@ -69,7 +74,10 @@ function Add() {
                 onSubmit={onSubmit}
                 style={{ display: 'flex', flexDirection: 'column' }}
             >
-                <Textarea value={verses} onChange={onChangeVerses}></Textarea>
+                <Textarea
+                    value={verses || ''}
+                    onChange={onChangeVerses}
+                ></Textarea>
 
                 <RadioBoxes>
                     {categories.map((category: any) => (
